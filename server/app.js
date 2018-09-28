@@ -23,4 +23,30 @@ app.get('/currencies', (req, res) => {
     });
 });
 
+app.get('/currency/:symbol', (req, res) => {
+  const symbol = req.params.symbol;
+
+  fetch(`https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD`)
+    .then(res => res.json())
+    .then(data => {
+      res.send(data);
+
+      let update = {};
+      update['/currencies/' + symbol] = data;
+
+      return firebase.database().ref().update(update);
+    })
+    .catch(err => console.error(err));
+});
+
+// firebase.database().ref('currencies/').once('value')
+//     .then(function(snapshot) {
+//       console.log(snapshot.val());
+//     });
+
+// [server] { '-LNWDSaYB24phDuJvYk1': { USD: 0.02873 },
+// [server]   BTC: { USD: 6524.85 },
+// [server]   ETH: { USD: 218.86 },
+// [server]   UP: { USD: 0.02872 } }
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
