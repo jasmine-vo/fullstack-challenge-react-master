@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class AddCurrency extends Component {
-// to do: min char 2/disable button, max char limit 6, add listener
   state = {
     symbol: ''
   }
