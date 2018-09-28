@@ -21,8 +21,8 @@ class App extends Component {
     API.getCurrency(symbol).then(data => {
       if (data.Response === 'Error') {
         this.setState({
-          showErrorMsg: true,
-          showSuccessMsg: false
+          showSuccessMsg: false,
+          showErrorMsg: true
         })
       } else {
         this.setState({
@@ -40,7 +40,11 @@ class App extends Component {
     let updatedCurrencies = Object.assign({}, this.state.currencies);
     delete updatedCurrencies[symbol]
 
-    this.setState({ currencies: updatedCurrencies })
+    this.setState({
+      currencies: updatedCurrencies,
+      showErrorMsg: false,
+      showSuccessMsg: false
+    })
   }
 
   render() {

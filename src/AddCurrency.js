@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class AddCurrency extends Component {
   state = {
-    symbol: ''
+    symbol: '',
   }
 
   handleChange = (event) => {
