@@ -13,3 +13,10 @@ export const getCurrency = (symbol) => {
   return fetch(`${api}/currency/${symbol}`, { headers })
     .then(res => res.json());
   };
+
+export const deleteCurrency = (symbol) => {
+  return fetch(`${api}/currency/${symbol}`, {
+    method: 'DELETE',
+    headers,
+  }).then(res => console.log(res));
+};
