@@ -31,6 +31,15 @@ class App extends Component {
     })
   }
 
+  removeCurrency = (symbol) => {
+    API.deleteCurrency(symbol);
+
+    let updatedCurrencies = Object.assign({}, this.state.currencies);
+    delete updatedCurrencies[symbol]
+
+    this.setState({ currencies: updatedCurrencies })
+  }
+
   render() {
     return (
       <div>
@@ -50,6 +59,7 @@ class App extends Component {
           <div className="hero-body">
             <CurrencyList
               currencies={this.state.currencies}
+              onRemoveCurrency={this.removeCurrency}
             />
           </div>
         </section>
