@@ -13,7 +13,7 @@ class AddCurrency extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.props.onSaveCurrency(this.state.symbol)
+    this.props.onSaveCurrency(this.state.symbol.toUpperCase())
 
     this.setState({ symbol: '' })
   }
