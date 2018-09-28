@@ -12,7 +12,10 @@ class AddCurrency extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.symbol)
+
+    this.props.onSaveCurrency(this.state.symbol)
+
+    this.setState({ symbol: '' })
   }
 
   render() {
@@ -30,6 +33,7 @@ class AddCurrency extends Component {
           type="text"
           placeholder="Symbol (ex. BTC)..."
           onChange={this.handleChange}
+          value={this.state.symbol}
         />
 
         <input
