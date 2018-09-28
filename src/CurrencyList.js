@@ -2,6 +2,8 @@ import React from 'react';
 
 function CurrencyList (props) {
 
+  const disabledBtns = new Set(['BTC', 'ETH']);
+
   return (
     <table className="table is-fullwidth">
       <tbody>
@@ -19,7 +21,9 @@ function CurrencyList (props) {
                 currency: 'USD'
               })}
             </td>
-            <td className="has-text-right">add delete</td>
+            <td className="has-text-right">
+              <button disabled={disabledBtns.has(curr)}>remove</button>
+            </td>
           </tr>
         ))}
       </tbody>
