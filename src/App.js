@@ -20,7 +20,10 @@ class App extends Component {
   saveCurrency = (symbol) => {
     API.getCurrency(symbol).then(data => {
       if (data.Response === 'Error') {
-        this.setState({ showErrorMsg: true })
+        this.setState({
+          showErrorMsg: true,
+          showSuccessMsg: false
+        })
       } else {
         this.setState({
           currencies: {...this.state.currencies, [symbol]:data},
