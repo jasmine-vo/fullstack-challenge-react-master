@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import * as API from './api';
 import CurrencyList from './CurrencyList.js';
+import AddCurrency from './AddCurrency.js';
 
 class App extends Component {
   state = {
@@ -20,8 +21,13 @@ class App extends Component {
         <section className="hero is-info title">
           <div className="hero-body is-size-2 has-text-centered">Cryptotracker</div>
         </section>
-        <section className="section">
+        <section className="hero">
           <div className="container">
+            <AddCurrency />
+          </div>
+        </section>
+        <section className="hero">
+          <div className="hero-body">
             <CurrencyList
               currencies={this.state.currencies}
             />
