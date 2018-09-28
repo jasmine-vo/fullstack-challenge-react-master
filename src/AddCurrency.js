@@ -16,6 +16,9 @@ class AddCurrency extends Component {
   }
 
   render() {
+
+    const enabled = this.state.symbol.length > 0;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label className="label">
@@ -33,6 +36,7 @@ class AddCurrency extends Component {
           type="submit"
           value="Save"
           className="button is-medium"
+          disabled={!enabled}
         />
       </form>
     );
