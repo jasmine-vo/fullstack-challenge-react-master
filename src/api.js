@@ -8,3 +8,8 @@ export const getCurrencies = () => {
   return fetch(`${api}/currencies`, { headers })
     .then(res => res.json());
   };
+
+export const getCurrency = (symbol) => {
+  return fetch(`${api}/currency/${symbol}`, { headers })
+    .then(res => res.json());
+  };
