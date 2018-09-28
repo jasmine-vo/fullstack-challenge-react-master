@@ -31,22 +31,25 @@ app.get('/currency/:symbol', (req, res) => {
     .then(data => {
       res.send(data);
 
-      let update = {};
-      update['/currencies/' + symbol] = data;
+      if (data.Response !== 'Error') {
+        let update = {};
+        update['/currencies/' + symbol] = data;
 
-      return firebase.database().ref().update(update);
+        return firebase.database().ref().update(update);
+      }
     })
     .catch(err => console.error(err));
 });
 
-// firebase.database().ref('currencies/').once('value')
-//     .then(function(snapshot) {
-//       console.log(snapshot.val());
-//     });
+app.delete('/currency/:symbol', (req, res) => {
+  const symbol = req.params.symbol;
 
-// [server] { '-LNWDSaYB24phDuJvYk1': { USD: 0.02873 },
-// [server]   BTC: { USD: 6524.85 },
-// [server]   ETH: { USD: 218.86 },
-// [server]   UP: { USD: 0.02872 } }
+  let update = {};
+  update['/currencies/' + symbol] = null;
+
+  firebase.database().ref().update(update);
+  
+  res.send();
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
