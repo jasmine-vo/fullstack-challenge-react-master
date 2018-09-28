@@ -23,26 +23,36 @@ class AddCurrency extends Component {
     const enabled = this.state.symbol.length > 0;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label className="label">
-          Add Cryptocurrency
-        </label>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label className="label">
+            Add Cryptocurrency
+          </label>
 
-        <input
-          className="input is-medium is-inline"
-          type="text"
-          placeholder="Symbol (ex. BTC)..."
-          onChange={this.handleChange}
-          value={this.state.symbol}
-        />
+          <input
+            className="input is-medium is-inline"
+            type="text"
+            placeholder="Symbol (ex. BTC)..."
+            onChange={this.handleChange}
+            value={this.state.symbol}
+          />
 
-        <input
-          type="submit"
-          value="Save"
-          className="button is-medium"
-          disabled={!enabled}
-        />
-      </form>
+          <input
+            type="submit"
+            value="Save"
+            className="button is-medium"
+            disabled={!enabled}
+          />
+        </form>
+
+        {(this.props.showErrorMsg) ?
+          <div className="message is-danger">There is no data for that symbol.</div>
+        : null}
+
+        {(this.props.showSuccessMsg) ?
+          <div className="message is-success">Saved!</div>
+        : null}
+      </div>
     );
   }
 }

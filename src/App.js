@@ -7,7 +7,9 @@ import AddCurrency from './AddCurrency.js';
 
 class App extends Component {
   state = {
-    currencies: {}
+    currencies: {},
+    showErrorMsg: false,
+    showSuccessMsg: false
   }
 
   componentDidMount() {
@@ -16,8 +18,17 @@ class App extends Component {
   }
 
   saveCurrency = (symbol) => {
-    API.getCurrency(symbol).then((data) =>
-      this.setState({ currencies: {...this.state.currencies, [symbol]:data} }))
+    API.getCurrency(symbol).then(data => {
+      if (data.Response === 'Error') {
+        this.setState({ showErrorMsg: true })
+      } else {
+        this.setState({
+          currencies: {...this.state.currencies, [symbol]:data},
+          showErrorMsg: false,
+          showSuccessMsg: true
+        })
+      }
+    })
   }
 
   render() {
@@ -30,6 +41,8 @@ class App extends Component {
           <div className="container">
             <AddCurrency
               onSaveCurrency={this.saveCurrency}
+              showErrorMsg={this.state.showErrorMsg}
+              showSuccessMsg={this.state.showSuccessMsg}
             />
           </div>
         </section>
