@@ -15,6 +15,11 @@ class App extends Component {
       this.setState({ currencies: data }))
   }
 
+  saveCurrency = (symbol) => {
+    API.getCurrency(symbol).then((data) =>
+      this.setState({ currencies: {...this.state.currencies, [symbol]:data} }))
+  }
+
   render() {
     return (
       <div>
@@ -23,7 +28,9 @@ class App extends Component {
         </section>
         <section className="hero">
           <div className="container">
-            <AddCurrency />
+            <AddCurrency
+              onSaveCurrency={this.saveCurrency}
+            />
           </div>
         </section>
         <section className="hero">
