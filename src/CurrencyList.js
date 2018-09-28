@@ -22,7 +22,11 @@ function CurrencyList (props) {
               })}
             </td>
             <td className="has-text-right">
-              <button disabled={disabledBtns.has(curr)}>remove</button>
+              <button 
+                disabled={disabledBtns.has(curr)}
+                onClick={() => props.onRemoveCurrency(curr)}>
+                  remove
+              </button>
             </td>
           </tr>
         ))}
